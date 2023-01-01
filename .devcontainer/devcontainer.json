@@ -1,0 +1,25 @@
+{
+	"name": "problem-solving",
+
+    "workspaceMount": "source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached",
+    "workspaceFolder": "/app/java",
+
+    "image": "mcr.microsoft.com/devcontainers/java:0-11-bullseye",
+
+	"features": {
+		"ghcr.io/devcontainers/features/java:1": {
+			"version": "none",
+			"installMaven": "false",
+			"installGradle": "true"
+		},
+		"ghcr.io/devcontainers/features/git:1": {}
+	},
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"richardwillis.vscode-gradle-extension-pack"
+			]
+		}
+	}
+}
