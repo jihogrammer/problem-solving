@@ -1,4 +1,4 @@
-package dev.jihogrammer.problem.solving.boj.boj13460;
+package dev.jihogrammer.problem.solving.boj13460.dfs01;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Solution01Test {
 
     @ParameterizedTest
-    @MethodSource("dev.jihogrammer.problem.solving.boj.boj13460.TestCase#arguments")
+    @MethodSource("dev.jihogrammer.problem.solving.boj13460.TestCase#arguments")
     void test(final String input, final int expected) {
         // given
         var inputStream = new ByteArrayInputStream(input.getBytes());

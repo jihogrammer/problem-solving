@@ -1,4 +1,4 @@
-package dev.jihogrammer.problem.solving.boj.boj13460;
+package dev.jihogrammer.problem.solving.boj13460;
 
 import org.junit.jupiter.params.provider.Arguments;
 
