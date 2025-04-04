@@ -7,7 +7,7 @@ import java.io.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Solution01Test {
+class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("dev.jihogrammer.problem.solving.boj13460.TestCase#arguments")
