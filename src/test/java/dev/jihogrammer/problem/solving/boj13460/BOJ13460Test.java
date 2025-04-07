@@ -1,12 +1,44 @@
 package dev.jihogrammer.problem.solving.boj13460;
 
+import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.stream.Stream;
 
-public class TestCase {
+import static org.assertj.core.api.Assertions.assertThat;
 
-    static Stream<Arguments> arguments() {
+public class BOJ13460Test {
+
+    @ParameterizedTest
+    @MethodSource("testCase")
+    void dfs01(final String input, final int expected) {
+        // given
+        var inputStream = new ByteArrayInputStream(input.getBytes());
+
+        // when
+        int result = dev.jihogrammer.problem.solving.boj13460.dfs01.Agent.solve(inputStream);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @MethodSource("testCase")
+    void dfs02(final String input, final int expected) throws IOException {
+        // given
+        var inputStream = new ByteArrayInputStream(input.getBytes());
+
+        // when
+        var result = dev.jihogrammer.problem.solving.boj13460.dfs02.Agent.solve(inputStream);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> testCase() {
         return Stream.of(
                 Arguments.of("""
                         5 5
@@ -67,33 +99,6 @@ public class TestCase {
                         ##########
                         #.O....RB#
                         ##########""", -1));
-    }
-
-    public static int[][] debug(final int[][] board, final int red, final int blue) {
-        final var BIT = 4;
-        final var MASK = ~(-1 << BIT);
-        final var EMPTY = 0;
-        final var WALL = 1;
-        final var RED = 3;
-        final var BLUE = 4;
-
-        var newBoard = new int[board.length][board[0].length];
-
-        var rx = red & MASK;
-        var ry = red >> BIT;
-        var bx = blue & MASK;
-        var by = blue >> BIT;
-
-        for (int y = 0; y < board.length; y++) {
-            for (int x = 0; x < board[y].length; x++) {
-                newBoard[y][x] = WALL == board[y][x] ? WALL : EMPTY;
-            }
-        }
-
-        newBoard[ry][rx] = RED;
-        newBoard[by][bx] = BLUE;
-
-        return newBoard;
     }
 
 }

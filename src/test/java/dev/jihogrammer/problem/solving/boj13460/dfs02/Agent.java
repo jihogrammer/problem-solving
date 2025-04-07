@@ -1,31 +1,12 @@
 package dev.jihogrammer.problem.solving.boj13460.dfs02;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static org.assertj.core.api.Assertions.assertThat;
+public class Agent {
 
-public class SolutionTest {
-
-    @ParameterizedTest
-    @MethodSource("dev.jihogrammer.problem.solving.boj13460.TestCase#arguments")
-    void test(final String input, final int expected) throws IOException {
-        // given
-        var reader = new Reader(new ByteArrayInputStream(input.getBytes()));
-        var height = reader.nextInt();
-        var width = reader.nextInt();
-        var board = reader.readBoard(width, height);
-        var solver = new Solver(board);
-
-        // when
-        var result = solver.solve();
-
-        // then
-        assertThat(result).isEqualTo(expected);
+    public static int solve(final InputStream inputStream) throws IOException {
+        return Main.solver(inputStream).solve();
     }
 
 }
@@ -35,7 +16,6 @@ public class SolutionTest {
  *     - visited 캐싱 및 비트 처리
  *     - position 비트화
  * </pre></blockquote>
- * {@link dev.jihogrammer.problem.solving.boj13460.dfs01.SolutionTest}
  *
  * @see <a href="http://boj.kr/10da5a45a0d64f21a7eb0b17fa1e6394">before</a>
  * @see <a href="https://www.acmicpc.net/source/88219820">direction 최적화</a>
@@ -43,18 +23,16 @@ public class SolutionTest {
 class Main {
 
     public static void main(final String[] args) throws IOException {
-        // given
-        var reader = new Reader(System.in);
+        System.out.println(solver(System.in).solve());
+    }
+
+    static Solver solver(final InputStream inputStream) throws IOException {
+        var reader = new Reader(inputStream);
         var height = reader.nextInt();
         var width = reader.nextInt();
         var board = reader.readBoard(width, height);
-        var solver = new Solver(board);
 
-        // when
-        var result = solver.solve();
-
-        // then
-        System.out.println(result);
+        return new Solver(board);
     }
 
 }

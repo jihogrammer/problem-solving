@@ -1,27 +1,14 @@
 package dev.jihogrammer.problem.solving.boj13460.dfs01;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
-import java.io.*;
+public class Agent {
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-public class SolutionTest {
-
-    @ParameterizedTest
-    @MethodSource("dev.jihogrammer.problem.solving.boj13460.TestCase#arguments")
-    void test(final String input, final int expected) {
-        // given
-        var inputStream = new ByteArrayInputStream(input.getBytes());
-        var boardHandler = Reader.readInput(inputStream);
-        var solver = new Solver(boardHandler);
-
-        // when
-        int result = solver.solve();
-
-        // then
-        assertThat(result).isEqualTo(expected);
+    public static int solve(final InputStream inputStream) {
+        return Main.solver(inputStream).solve();
     }
 
 }
@@ -41,15 +28,11 @@ public class SolutionTest {
 class Main {
 
     public static void main(final String[] args) {
-        // given
-        BoardHandler boardHandler = Reader.readInput(System.in);
-        Solver solver = new Solver(boardHandler);
+        System.out.println(solver(System.in).solve());
+    }
 
-        // when
-        int result = solver.solve();
-
-        // then
-        System.out.println(result);
+    static Solver solver(final InputStream inputStream) {
+        return new Solver(Reader.readInput(inputStream));
     }
 
 }
