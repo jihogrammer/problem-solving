@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BOJ13460Test {
+class BOJ13460Test {
 
     @ParameterizedTest
     @MethodSource("testCase")
@@ -51,7 +51,24 @@ public class BOJ13460Test {
         assertThat(result).isEqualTo(expected);
     }
 
+    @ParameterizedTest
+    @MethodSource("testCase")
+    void bfs02(final String input, final int expected) throws IOException {
+        // given
+        var inputStream = new ByteArrayInputStream(input.getBytes());
+
+        // when
+        var result = dev.jihogrammer.problem.solving.boj13460.bfs02.Main.solve(inputStream);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
     static char[][] debug(final byte[][] board, final int red, final int blue, final int BIT) {
+        return debug(board, red, blue, BIT);
+    }
+
+    static char[][] debug(final int[][] board, final int red, final int blue, final int BIT) {
         final var MASK = ~(-1 << BIT);
         final var debugBoard = new char[board.length][board[0].length];
 
