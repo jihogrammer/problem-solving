@@ -38,6 +38,46 @@ public class BOJ13460Test {
         assertThat(result).isEqualTo(expected);
     }
 
+    @ParameterizedTest
+    @MethodSource("testCase")
+    void bfs01(final String input, final int expected) throws IOException {
+        // given
+        var inputStream = new ByteArrayInputStream(input.getBytes());
+
+        // when
+        var result = dev.jihogrammer.problem.solving.boj13460.bfs01.Agent.solve(inputStream);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    static char[][] debug(final byte[][] board, final int red, final int blue, final int BIT) {
+        final var MASK = ~(-1 << BIT);
+        final var debugBoard = new char[board.length][board[0].length];
+
+        for (var y = 0; y < board.length; y++) {
+            for (var x = 0; x < board[y].length; x++) {
+                if ('#' == board[y][x]) {
+                    debugBoard[y][x] = '#';
+                } else if ('O' == board[y][x]) {
+                    debugBoard[y][x] = 'O';
+                } else {
+                    debugBoard[y][x] = '.';
+                }
+            }
+        }
+
+        var rx = red & MASK;
+        var ry = red >> BIT;
+        var bx = blue & MASK;
+        var by = blue >> BIT;
+
+        debugBoard[ry][rx] = 'R';
+        debugBoard[by][bx] = 'B';
+
+        return debugBoard;
+    }
+
     static Stream<Arguments> testCase() {
         return Stream.of(
                 Arguments.of("""
