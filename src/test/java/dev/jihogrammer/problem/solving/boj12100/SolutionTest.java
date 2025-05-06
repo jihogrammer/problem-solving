@@ -14,12 +14,25 @@ class SolutionTest {
 
     @ParameterizedTest
     @MethodSource("testCase")
-    void bfs01(final String input, final int expected) throws IOException {
+    void dfs01(final String input, final int expected) throws IOException {
         // given
         var inputStream = new ByteArrayInputStream(input.getBytes());
 
         // when
         var result = dev.jihogrammer.problem.solving.boj12100.dfs01.Main.solve(inputStream);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @MethodSource("testCase")
+    void bfs01(final String input, final int expected) throws IOException {
+        // given
+        var inputStream = new ByteArrayInputStream(input.getBytes());
+
+        // when
+        var result = dev.jihogrammer.problem.solving.boj12100.bfs01.Main.solve(inputStream);
 
         // then
         assertThat(result).isEqualTo(expected);
